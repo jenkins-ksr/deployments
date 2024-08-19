@@ -3,15 +3,23 @@ kind: Deployment
 metadata:
   name: nginx
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       app: nginx
-   template:
-     metadata:
-       labels:
-         app: nginx
-     spec:
-       containers:
-       - name: nginx
-         image: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      nodeSelector:
+        env: staging
+      containers:
+        - name: nginx
+          image: nginx
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              cpu: "2m"
+              memory: "10Mi"
