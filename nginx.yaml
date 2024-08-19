@@ -12,8 +12,6 @@ spec:
       labels:
         app: nginx
     spec:
-      nodeSelector:
-        env: staging
       containers:
         - name: nginx
           image: nginx
